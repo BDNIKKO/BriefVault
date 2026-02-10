@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIEF VAULT // Creative Project Manager</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="logo">
+                    <span class="logo-icon">▮▮▮</span>
+                    BRIEF VAULT
+                    <span class="logo-subtitle">// Creative Project Manager</span>
+                </h1>
+                <div class="header-actions">
+                    <!-- Dark mode toggle -->
+                    <button class="btn btn-icon-only" id="themeToggle" title="Toggle Dark/Light Mode">
+                        <span class="theme-icon">◐</span>
+                    </button>
+                    <button class="btn btn-icon-only" id="showTutorialBtn" title="Show Tutorial Again">
+                        <span>❓</span>
+                    </button>
+                    <button class="btn btn-secondary" id="templatesBtn" title="Use Pre-made Templates">
+                        <span class="btn-icon">📋</span>
+                        TEMPLATES
+                    </button>
+                    <button class="btn btn-secondary" id="seedDataBtn" title="Load Sample Projects">
+                        <span class="btn-icon">⚡</span>
+                        DEMO DATA
+                    </button>
+                    <button class="btn btn-primary" id="newBriefBtn">
+                        <span class="btn-icon">+</span>
+                        NEW BRIEF
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Search/Filter UI -->
+            <div class="controls">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search briefs...">
+                <select id="statusFilter" class="filter-select">
+                    <option value="all">All Status</option>
+                    <option value="idea">Idea</option>
+                    <option value="in-progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                    <option value="archived">Archived</option>
+                </select>
+            </div>
+        </header>
+
+        <!-- Main Grid - REQUIREMENT: Display/Read all briefs -->
+        <main class="main-grid" id="briefsGrid">
+            <!-- Brief cards will be dynamically injected here -->
+        </main>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState">
+            <div class="empty-icon">◇</div>
+            <h2>Ready to Start Your First Project?</h2>
+            <p class="empty-subtitle">Choose how you'd like to begin:</p>
+            <div class="empty-actions">
+                <button class="btn btn-primary" id="templatesBtnEmpty">
+                    <span class="btn-icon">📋</span>
+                    Use a Template
+                </button>
+                <button class="btn btn-secondary" id="seedDataBtnEmpty">
+                    <span class="btn-icon">⚡</span>
+                    Load Demo Data
+                </button>
+                <button class="btn btn-secondary" id="newBriefBtnEmpty">
+                    <span class="btn-icon">+</span>
+                    Start from Scratch
+                </button>
+            </div>
+            <div class="empty-hint">
+                <strong>💡 Not sure what to create?</strong>
+                <p>Examples: "Portfolio Redesign", "Mobile App UI", "Brand Identity for Coffee Shop"</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Multi-Step Tutorial -->
+    <div class="tutorial-overlay" id="tutorialOverlay">
+        <div class="tutorial-content">
+            <div class="tutorial-progress">
+                <span class="progress-dot active" data-step="0"></span>
+                <span class="progress-dot" data-step="1"></span>
+                <span class="progress-dot" data-step="2"></span>
+                <span class="progress-dot" data-step="3"></span>
+            </div>
+            
+            <div class="tutorial-step active" data-step="0">
+                <div class="tutorial-icon">🎨</div>
+                <h2>Welcome to BRIEF VAULT</h2>
+                <p class="tutorial-desc">Your visual workspace for planning creative projects. Think of it as <strong>Pinterest meets Project Manager</strong>.</p>
+                <div class="tutorial-example">
+                    <strong>What's a "Creative Brief"?</strong>
+                    <p>A brief is like a project card that holds all your ideas in one place:</p>
+                    <ul>
+                        <li>🎨 Colors for your design</li>
+                        <li>🔗 Reference links for inspiration</li>
+                        <li>📝 Notes and descriptions</li>
+                        <li>🏷️ Tags to organize</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tutorial-step" data-step="1">
+                <div class="tutorial-icon">💡</div>
+                <h2>Here's How It Works</h2>
+                <div class="tutorial-visual">
+                    <div class="example-card">
+                        <div class="example-title">Portfolio Redesign</div>
+                        <div class="example-colors">
+                            <span style="background: #00f0ff;"></span>
+                            <span style="background: #8b5cf6;"></span>
+                            <span style="background: #ff0080;"></span>
+                        </div>
+                        <div class="example-tags">
+                            <span>web</span>
+                            <span>portfolio</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="tutorial-desc"><strong>Example:</strong> You're redesigning your portfolio. Create a brief to track your color palette, save inspiration links from Dribbble, and tag it as "web" and "portfolio".</p>
+            </div>
+
+            <div class="tutorial-step" data-step="2">
+                <div class="tutorial-icon">✨</div>
+                <h2>Pro Tips</h2>
+                <div class="tips-grid">
+                    <div class="tip-item">
+                        <strong>◐ Toggle Theme</strong>
+                        <p>Switch between dark/light mode</p>
+                    </div>
+                    <div class="tip-item">
+                        <strong>🔍 Search</strong>
+                        <p>Find briefs by name or tags</p>
+                    </div>
+                    <div class="tip-item">
+                        <strong>🎨 Color Palettes</strong>
+                        <p>Click color inputs to pick any color</p>
+                    </div>
+                    <div class="tip-item">
+                        <strong>📊 Status Tracking</strong>
+                        <p>Move from Idea → In Progress → Done</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tutorial-step" data-step="3">
+                <div class="tutorial-icon">🚀</div>
+                <h2>Ready to Start?</h2>
+                <p class="tutorial-desc">Choose your starting point - click any option below!</p>
+                <div class="quick-start-options">
+                    <div class="quick-option clickable" id="tutorialDemoData">
+                        <div class="option-number">1</div>
+                        <strong>Load Demo Data</strong>
+                        <p>See 6 example briefs instantly</p>
+                    </div>
+                    <div class="quick-option clickable" id="tutorialTemplates">
+                        <div class="option-number">2</div>
+                        <strong>Use a Template</strong>
+                        <p>Pre-filled examples to customize</p>
+                    </div>
+                    <div class="quick-option clickable" id="tutorialNewBrief">
+                        <div class="option-number">3</div>
+                        <strong>Start from Scratch</strong>
+                        <p>Create your own from blank</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tutorial-actions">
+                <button class="btn btn-secondary" id="tutorialPrev">← Back</button>
+                <button class="btn btn-secondary" id="tutorialSkip">Skip Tutorial</button>
+                <button class="btn btn-primary" id="tutorialNext">Next →</button>
+                <button class="btn btn-primary" id="tutorialFinish" style="display: none;">Let's Go! 🚀</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Start Templates Modal -->
+    <div class="modal" id="templatesModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h2>🚀 QUICK START TEMPLATES</h2>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.5rem; font-family: var(--font-primary);">
+                        Click any template to pre-fill the form with example data. You can customize everything!
+                    </p>
+                </div>
+                <button class="btn-close" id="closeTemplates">&times;</button>
+            </div>
+            <div class="templates-grid" id="templatesGrid">
+                <!-- Templates will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Create/Update Modal -->
+    <div class="modal" id="briefModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">NEW BRIEF</h2>
+                <button class="btn-close" id="closeModal">&times;</button>
+            </div>
+            
+            <form id="briefForm">
+                <div class="form-grid">
+                    <!-- Basic Info -->
+                    <div class="form-group full-width">
+                        <label for="briefTitle">Project Name <span class="label-hint">(What are you building?)</span></label>
+                        <input type="text" id="briefTitle" name="title" required placeholder='e.g., "Portfolio Redesign" or "Coffee Shop Logo"'>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="briefDescription">Description <span class="label-hint">(Optional - Your vision & goals)</span></label>
+                        <textarea id="briefDescription" name="description" rows="4" placeholder="Describe the project, target audience, style direction, etc."></textarea>
+                    </div>
+
+                    <!-- Color Palette -->
+                    <div class="form-group full-width">
+                        <label>Color Palette <span class="label-hint">(Click to pick your colors)</span></label>
+                        <div class="color-inputs">
+                            <input type="color" id="color1" name="color1" value="#00f0ff" title="Primary color">
+                            <input type="color" id="color2" name="color2" value="#8b5cf6" title="Secondary color">
+                            <input type="color" id="color3" name="color3" value="#ff0080" title="Accent color">
+                            <input type="color" id="color4" name="color4" value="#00ff9f" title="Success color">
+                            <input type="color" id="color5" name="color5" value="#ffd700" title="Highlight color">
+                        </div>
+                    </div>
+
+                    <!-- References -->
+                    <div class="form-group full-width">
+                        <label for="references">Inspiration Links <span class="label-hint">(Separate with commas)</span></label>
+                        <input type="text" id="references" name="references" placeholder="https://dribbble.com/example, https://awwwards.com/site">
+                    </div>
+
+                    <!-- Tags -->
+                    <div class="form-group">
+                        <label for="tags">Tags <span class="label-hint">(For organizing)</span></label>
+                        <input type="text" id="tags" name="tags" placeholder="web, mobile, branding">
+                    </div>
+
+                    <!-- Status -->
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select id="status" name="status">
+                            <option value="idea">Idea</option>
+                            <option value="in-progress">In Progress</option>
+                            <option value="completed">Completed</option>
+                            <option value="archived">Archived</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="submitBtn">
+                        <span id="submitBtnText">Create Brief</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
